@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open WebUI - Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Importing styles from signin page to maintain consistency */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        background-color: #000000;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        flex-direction: column; /* Arrange children in a column */
+        justify-content: space-between; /* Distribute space between children */
+        min-height: 100vh; /* Ensure body takes at least 100% viewport height */
+      }
+
+      /* Header styles */
+      header {
+        font-size: 20px;
+        background-color: #000000;
+        padding: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Centered container inside header */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 20000px; /* Adjust this value based on your preference */
+        margin: 0 auto; /* Centers the container */
+        align-items: center;
+      }
+
+      header ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Center the navigation items */
+        flex-grow: 1; /* Allow space for profile on the right */
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        margin-left: 230px;
+      }
+
+      header li {
+        margin-right: 70px; /* Add space between buttons */
+      }
+
+      header a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      header a:hover {
+        color: #c0bebe;
+      }
+
+      /* Profile section styles */
+      .profile {
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+      }
+
+      .profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; /* Circular profile picture */
+        margin-right: 10px; /* Space between image and username */
+      }
+
+      /* Image styles */
+      .image-container {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        flex-grow: 1; /* This ensures that the image container takes up available space */
+      }
+
+      .image-container img {
+        max-width: 100%; /* Set the maximum width to 100% of the container */
+        height: auto; /* Set the height to auto, so it adjusts based on the width */
+        object-fit: cover; /* Make the image cover the entire container */
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #111111;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+        width: auto;
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+      .image-container {
+        position: relative; /* Set container to relative */
+      }
+
+      .overlay-1 {
+        font-size: 100px;
+        position: absolute; /* Position overlay absolutely */
+        top: 20%; /* Center vertically */
+        left: 35%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust positioning */
+        color: white; /* Text color */
+      }
+      .overlay-2 {
+        font-size: 50px;
+        position: absolute; /* Position overlay absolutely */
+        top: 45%; /* Center vertically */
+        left: 17%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust positioning */
+        color: white; /* Text color */
+        line-height: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li class="no-hover">
+            <a href="#" style="font-size: 1.3em; color: #ffffff">Open WebUI</a>
+          </li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <div class="profile">
+          <img src="profile.png" alt="Profile Picture" />
+          <span>Affan Ul Haq</span>
+        </div>
+      </div>
+    </header>
+    <div class="image-container">
+      <img src="demo.jpg" alt="Demo Image" />
+      <div class="overlay-1">LIMITED STOCK WebUI</div>
+      <div class="overlay-2">DO NOT MISS THE<br></br>WebUI YOU WANT</div>
+    </div>
+    <footer>© 2024 Affan's Software Inc.</footer>
+  </body>
+</html>

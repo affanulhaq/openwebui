@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open WebUI - Sign In/Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background-color: #000000;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        flex-direction: column; /* Arrange children in a column */
+        justify-content: space-between; /* Distribute space between children */
+      }
+      .wrapper {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        position: relative; /* To position children absolutely */
+        width: 100%; /* Full width to allow centering */
+        flex: 1; /* Allow wrapper to grow */
+      }
+      .container {
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        position: absolute; /* Position absolutely to overlay */
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none; /* Prevent interaction when hidden */
+      }
+
+      /* Add this to show the container with animation */
+      .show {
+        opacity: 1;
+      }
+      form {
+        background-color: transparent;
+        border: none;
+        padding: 2px;
+        margin: auto;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="submit"] {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 13px;
+        background-color: #111111;
+        color: #ffffff;
+      }
+      input[type="submit"] {
+        margin: 25px 0;
+      }
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus {
+        outline: none;
+      }
+      input[type="submit"]:hover {
+        background-color: #0c0c0c;
+        cursor: pointer;
+      }
+      .signup {
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+      .signup:hover {
+        color: #c0bebe;
+      }
+      h1,
+      h2 {
+        color: #ffffff;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 14px;
+        text-align: left;
+      }
+      footer {
+        background-color: #111111;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+        width: auto; /* Full width for footer */
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          position: fixed;
+          top: 40px;
+          max-width: 300px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container" id="signin-container">
+        <h1>Sign in to Open WebUI</h1>
+        <form id="signin-form">
+          <h2>Email</h2>
+          <input type="email" placeholder="Enter Your Email" required />
+          <h2>Password</h2>
+          <input type="password" placeholder="Enter Your Password" required />
+          <!--<input type="submit" value="Sign in" />-->
+          <input type="submit" value="Sign in" onclick="window.location.href='home.html'; return false;" /> <!--Temporary line for redirect to home.html -->
+          <a class="signup" onclick="showSignUp()"
+            >Don't have an account?
+            <span style="text-decoration: underline">Sign up</span></a
+          >
+        </form>
+      </div>
+
+      <div class="container hidden" id="signup-container">
+        <h1>Create an Account</h1>
+        <form id="signup-form">
+          <h2>Name</h2>
+          <input type="text" placeholder="Enter Your Name" required />
+          <h2>Email</h2>
+          <input type="email" placeholder="Enter Your Email" required />
+          <h2>Password</h2>
+          <input type="password" placeholder="Enter Your Password" required />
+          <h2>Confirm Password</h2>
+          <input type="password" placeholder="Confirm Your Password" required />
+          <input type="submit" value="Sign up" />
+          <a class="signup" onclick="showSignIn()"
+            >Already have an account?
+            <span style="text-decoration: underline">Sign in</span></a
+          >
+        </form>
+      </div>
+    </div>
+
+    <footer>© 2024 Affan's Software Inc.</footer>
+
+    <script>
+      function showSignUp() {
+        document.getElementById("signin-container").classList.add("hidden");
+        document.getElementById("signup-container").classList.remove("hidden");
+      }
+
+      function showSignIn() {
+        document.getElementById("signup-container").classList.add("hidden");
+        document.getElementById("signin-container").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
