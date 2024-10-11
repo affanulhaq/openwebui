@@ -35,7 +35,7 @@
         max-width: 400px;
         padding: 20px;
         opacity: 1;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.7s ease;
         position: absolute; /* Position absolutely to overlay */
       }
 
@@ -107,10 +107,9 @@
         width: auto; /* Full width for footer */
       }
 
-      @media (max-width: 480px) {
+      /* Extra small devices (phones, 0px - 575px) */
+      @media (max-width: 575px) {
         .container {
-          position: fixed;
-          top: 40px;
           max-width: 300px;
         }
         h1 {
@@ -126,42 +125,125 @@
           padding: 15px;
         }
       }
+
+      /* Small devices (landscape phones, 576px - 767px) */
+      @media (min-width: 576px) and (max-width: 767px) {
+        .container {
+          max-width: 300px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+          padding: 15px;
+        }
+      }
+
+      /* Medium devices (tablets, 768px - 991px) */
+      @media (min-width: 768px) and (max-width: 991px) {
+        .container {
+          max-width: 300px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+          padding: 15px;
+        }
+      }
+
+      /* Large devices (desktops, 992px - 1199px) */
+      @media (min-width: 992px) and (max-width: 1199px) {
+        .container {
+          max-width: 300px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+          padding: 15px;
+        }
+      }
+
+      /* Extra large devices (large desktops, 1200px and above) */
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 400px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        h2 {
+          font-size: 14px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+          padding: 15px;
+        }
+      }
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 10px;
+        text-align: left;
+      }
     </style>
   </head>
   <body>
     <div class="wrapper">
       <div class="container" id="signin-container">
         <h1>Sign in to Open WebUI</h1>
-        <form id="signin-form">
+        <form id="signin-form" onsubmit="return validateSignIn()">
           <h2>Email</h2>
-          <input type="email" placeholder="Enter Your Email" required />
+          <input type="email" id="signin-email" placeholder="Enter Your Email" required />
           <h2>Password</h2>
-          <input type="password" placeholder="Enter Your Password" required />
-          <!--<input type="submit" value="Sign in" />-->
-          <input type="submit" value="Sign in" onclick="window.location.href='home.html'; return false;" /> <!--Temporary line for redirect to home.html -->
-          <a class="signup" onclick="showSignUp()"
-            >Don't have an account?
-            <span style="text-decoration: underline">Sign up</span></a
-          >
+          <input type="password" id="signin-password" placeholder="Enter Your Password" required />
+          <div id="signin-error-message" class="error-message hidden"></div>
+          <input type="submit" value="Sign in" />
+          <a class="signup" onclick="showSignUp()">
+            Don't have an account?
+            <span style="text-decoration: underline">Sign up</span>
+          </a>
         </form>
       </div>
 
       <div class="container hidden" id="signup-container">
         <h1>Create an Account</h1>
-        <form id="signup-form">
+        <form id="signup-form" onsubmit="return validateSignup()">
           <h2>Name</h2>
           <input type="text" placeholder="Enter Your Name" required />
           <h2>Email</h2>
           <input type="email" placeholder="Enter Your Email" required />
           <h2>Password</h2>
-          <input type="password" placeholder="Enter Your Password" required />
+          <input type="password" id="password" placeholder="Enter Your Password" required />
           <h2>Confirm Password</h2>
-          <input type="password" placeholder="Confirm Your Password" required />
+          <input type="password" id="confirm-password" placeholder="Confirm Your Password" required />
+          <div id="signup-error-message" class="error-message hidden"></div>
           <input type="submit" value="Sign up" />
-          <a class="signup" onclick="showSignIn()"
-            >Already have an account?
-            <span style="text-decoration: underline">Sign in</span></a
-          >
+          <a class="signup" onclick="showSignIn()">
+            Already have an account?
+            <span style="text-decoration: underline">Sign in</span>
+          </a>
         </form>
       </div>
     </div>
@@ -172,11 +254,45 @@
       function showSignUp() {
         document.getElementById("signin-container").classList.add("hidden");
         document.getElementById("signup-container").classList.remove("hidden");
+        document.getElementById("signup-error-message").classList.add("hidden"); // Hide error message on sign up
       }
 
       function showSignIn() {
         document.getElementById("signup-container").classList.add("hidden");
         document.getElementById("signin-container").classList.remove("hidden");
+        document.getElementById("signin-error-message").classList.add("hidden"); // Hide error message on sign in
+      }
+
+      function validateSignup() {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+        const errorMessage = document.getElementById("signup-error-message");
+
+        if (password !== confirmPassword) {
+          errorMessage.textContent = "Passwords do not match!";
+          errorMessage.classList.remove("hidden");
+          return false; // Prevent form submission
+        } else {
+          errorMessage.classList.add("hidden"); // Hide error message if passwords match
+          return true; // Allow form submission
+        }
+      }
+
+      function validateSignIn() {
+        const email = document.getElementById("signin-email").value;
+        const password = document.getElementById("signin-password").value;
+        const errorMessage = document.getElementById("signin-error-message");
+
+        // Simulating server-side validation for demonstration (replace with actual server call)
+        if (email !== "user@example.com" || password !== "password123") {
+          errorMessage.textContent = "Incorrect email or password!";
+          errorMessage.classList.remove("hidden");
+          return false; // Prevent form submission
+        } else {
+          errorMessage.classList.add("hidden"); // Hide error message if credentials are correct
+          window.location.href = "home.html"; // Redirect to home page
+          return true; // Allow form submission
+        }
       }
     </script>
   </body>

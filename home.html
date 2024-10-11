@@ -9,126 +9,185 @@
       rel="stylesheet"
     />
     <style>
-      /* Importing styles from signin page to maintain consistency */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-      }
+      /* Base styles for all devices */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
 
-      body {
-        background-color: #000000;
-        font-family: "Open Sans", sans-serif;
-        display: flex;
-        flex-direction: column; /* Arrange children in a column */
-        justify-content: space-between; /* Distribute space between children */
-        min-height: 100vh; /* Ensure body takes at least 100% viewport height */
-      }
+body {
+    background-color: #000000;
+    font-family: "Open Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
 
-      /* Header styles */
-      header {
-        font-size: 20px;
-        background-color: #000000;
-        padding: 25px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+/* Header styles */
+header {
+    font-size: 20px;
+    background-color: #000000;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-      /* Centered container inside header */
-      .container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 20000px; /* Adjust this value based on your preference */
-        margin: 0 auto; /* Centers the container */
-        align-items: center;
-      }
+/* Centered container inside header */
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 20000px;
+    margin: 0 auto;
+    align-items: center;
+}
 
-      header ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center; /* Center the navigation items */
-        flex-grow: 1; /* Allow space for profile on the right */
-        flex-wrap: wrap; /* Allow items to wrap to the next line */
-        margin-left: 230px;
-      }
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    margin-left: 230px;
+}
 
-      header li {
-        margin-right: 70px; /* Add space between buttons */
-      }
+header li {
+    margin-right: 70px;
+}
 
-      header a {
-        color: #ffffff;
-        text-decoration: none;
-      }
+header a {
+    color: #ffffff;
+    text-decoration: none;
+}
 
-      header a:hover {
-        color: #c0bebe;
-      }
+header a:hover {
+    color: #c0bebe;
+}
 
-      /* Profile section styles */
-      .profile {
-        display: flex;
-        align-items: center;
-        color: #ffffff;
-      }
+/* Profile section styles */
+.profile {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
 
-      .profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%; /* Circular profile picture */
-        margin-right: 10px; /* Space between image and username */
-      }
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
-      /* Image styles */
-      .image-container {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        flex-grow: 1; /* This ensures that the image container takes up available space */
-      }
+/* Image styles */
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    flex-grow: 1;
+}
 
-      .image-container img {
-        max-width: 100%; /* Set the maximum width to 100% of the container */
-        height: auto; /* Set the height to auto, so it adjusts based on the width */
-        object-fit: cover; /* Make the image cover the entire container */
-      }
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
-      /* Footer styles */
-      footer {
-        background-color: #111111;
-        color: #ffffff;
-        text-align: center;
-        padding: 10px;
-        width: auto;
-        position: relative;
-        bottom: 0;
-        left: 0;
-      }
-      .image-container {
-        position: relative; /* Set container to relative */
-      }
+/* Footer styles */
+footer {
+    background-color: #111111;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    width: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
 
-      .overlay-1 {
-        font-size: 100px;
-        position: absolute; /* Position overlay absolutely */
-        top: 20%; /* Center vertically */
-        left: 35%; /* Center horizontally */
-        transform: translate(-50%, -50%); /* Adjust positioning */
-        color: white; /* Text color */
-      }
-      .overlay-2 {
+.image-container {
+    position: relative;
+}
+
+.overlay-1 {
+    font-size: 100px;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.overlay-2 {
+    font-size: 50px;
+    position: absolute;
+    top: 45%;
+    left: 31%;
+    transform: translate(-50%, -50%);
+    color: white;
+    line-height: 50%;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    header {
+        font-size: 18px;
+    }
+
+    header li {
+        margin-left: 40px;
+    }
+
+    .overlay-1 {
+        font-size: 90px;
+        margin-left: 30px;
+    }
+
+    .overlay-2 {
         font-size: 50px;
-        position: absolute; /* Position overlay absolutely */
-        top: 45%; /* Center vertically */
-        left: 17%; /* Center horizontally */
-        transform: translate(-50%, -50%); /* Adjust positioning */
-        color: white; /* Text color */
-        line-height: 50%;
-      }
+        margin-left: 170px;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        flex-direction: column;
+    }
+
+    header ul {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    header li {
+        margin-right: 20px;
+    }
+
+    .overlay-1 {
+        font-size: 60px;
+    }
+
+    .overlay-2 {
+        font-size: 30px;
+        margin-left: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .profile img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
     </style>
   </head>
   <body>
@@ -152,7 +211,7 @@
     <div class="image-container">
       <img src="demo.jpg" alt="Demo Image" />
       <div class="overlay-1">LIMITED STOCK WebUI</div>
-      <div class="overlay-2">DO NOT MISS THE<br></br>WebUI YOU WANT</div>
+      <div class="overlay-2">DO NOT MISS THE WebUI YOU WANT</div>
     </div>
     <footer>© 2024 Affan's Software Inc.</footer>
   </body>
