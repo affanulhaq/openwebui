@@ -181,6 +181,34 @@
         color: #00e7c1;
       }
 
+      /*Cursor----------------------------------------------------------------------------------------------------------*/
+      /* Hide the default cursor on all interactive elements */
+      body,
+      input,
+      textarea,
+      button,
+      a,
+      label {
+        cursor: none; /* Hide default cursor */
+      }
+
+      .cursor {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(
+          255,
+          255,
+          255,
+          1
+        ); /* Full white color for the cursor */
+        box-shadow: 0 0 15px 5px rgba(255, 255, 255, 1); /* Stronger glow effect */
+        pointer-events: none;
+        z-index: 10000;
+      }
+      /*Cursor----------------------------------------------------------------------------------------------------------*/
+
       /* Media Queries */
       @media (max-width: 768px) {
         header ul {
@@ -244,6 +272,7 @@
     </style>
   </head>
   <body>
+    <div class="cursor"></div>
     <header id="main-header">
       <div class="container">
         <div class="logo">
@@ -300,5 +329,15 @@
     <footer>
       <p>&copy; 2024 Affan's Software Inc. All rights reserved.</p>
     </footer>
+
+    <script>
+      // JavaScript to move the custom cursor with the mouse
+      const cursor = document.querySelector(".cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.pageX + "px";
+        cursor.style.top = e.pageY + "px";
+      });
+    </script>
   </body>
 </html>
