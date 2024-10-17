@@ -125,8 +125,8 @@
         text-align: left;
       }
       ::selection {
-        background-color: rgb(70, 70, 70);
-        color: rgb(255, 255, 255);
+        background-color: #00e7c12d;
+        color: #00e7c1;
       }
 
       @media (max-width: 575px) {
@@ -166,9 +166,32 @@
         <h1>Sign in to Open WebUI</h1>
         <form id="signin-form">
           <label for="signin-email">Email</label>
-          <input type="email" id="signin-email" placeholder="Enter Your Email" required />
+          <input
+            type="email"
+            id="signin-email"
+            placeholder="Enter Your Email"
+            required
+          />
           <label for="signin-password">Password</label>
-          <input type="password" id="signin-password" placeholder="Enter Your Password" required />
+          <div style="position: relative">
+            <input
+              type="password"
+              id="signin-password"
+              placeholder="Enter Your Password"
+              required
+            />
+            <span
+              id="toggle-signin-password"
+              style="
+                position: absolute;
+                right: 10px;
+                top: 40%;
+                transform: translateY(-50%);
+                cursor: pointer;
+              "
+              >👁️</span
+            >
+          </div>
           <div id="signin-error-message" class="error-message hidden"></div>
           <input type="submit" value="Sign in" />
           <a href="#" class="signup" id="show-signup">
@@ -182,13 +205,59 @@
         <h1>Create an Account</h1>
         <form id="signup-form">
           <label for="signup-name">Name</label>
-          <input type="text" id="signup-name" placeholder="Enter Your Name" required />
+          <input
+            type="text"
+            id="signup-name"
+            placeholder="Enter Your Name"
+            required
+          />
           <label for="signup-email">Email</label>
-          <input type="email" id="signup-email" placeholder="Enter Your Email" required />
+          <input
+            type="email"
+            id="signup-email"
+            placeholder="Enter Your Email"
+            required
+          />
           <label for="signup-password">Password</label>
-          <input type="password" id="signup-password" placeholder="Enter Your Password" required />
+          <div style="position: relative">
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="Enter Your Password"
+              required
+            />
+            <span
+              id="toggle-signup-password"
+              style="
+                position: absolute;
+                right: 10px;
+                top: 40%;
+                transform: translateY(-50%);
+                cursor: pointer;
+              "
+              >👁️</span
+            >
+          </div>
           <label for="signup-confirm-password">Confirm Password</label>
-          <input type="password" id="signup-confirm-password" placeholder="Confirm Your Password" required />
+          <div style="position: relative">
+            <input
+              type="password"
+              id="signup-confirm-password"
+              placeholder="Confirm Your Password"
+              required
+            />
+            <span
+              id="toggle-signup-confirm-password"
+              style="
+                position: absolute;
+                right: 10px;
+                top: 40%;
+                transform: translateY(-50%);
+                cursor: pointer;
+              "
+              >👁️</span
+            >
+          </div>
           <div id="signup-error-message" class="error-message hidden"></div>
           <input type="submit" value="Sign up" />
           <a href="#" class="signup" id="show-signin">
@@ -200,87 +269,137 @@
     </div>
 
     <footer>
-    <p>&copy; 2024 Affan's Software Inc. All rights reserved.</p>
+      <p>&copy; 2024 Affan's Software Inc. All rights reserved.</p>
     </footer>
 
     <script>
-      document.getElementById('show-signup').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById("signin-container").classList.add("hidden");
-        document.getElementById("signup-container").classList.remove("hidden");
-        document.getElementById("signup-error-message").classList.add("hidden");
-      });
+      // Toggle Password Visibility
+      function togglePasswordVisibility(passwordFieldId, toggleIconId) {
+        const passwordField = document.getElementById(passwordFieldId);
+        const toggleIcon = document.getElementById(toggleIconId);
 
-      document.getElementById('show-signin').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById("signup-container").classList.add("hidden");
-        document.getElementById("signin-container").classList.remove("hidden");
-        document.getElementById("signin-error-message").classList.add("hidden");
-      });
+        toggleIcon.addEventListener("click", function () {
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleIcon.textContent = "🙈"; // Change to hidden eye
+          } else {
+            passwordField.type = "password";
+            toggleIcon.textContent = "👁️"; // Change back to visible eye
+          }
+        });
+      }
 
-      document.getElementById('signup-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById("signup-name").value;
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
-    const confirmPassword = document.getElementById("signup-confirm-password").value;
-    const errorMessage = document.getElementById("signup-error-message");
+      // Apply the toggle function to all password fields
+      togglePasswordVisibility("signin-password", "toggle-signin-password");
+      togglePasswordVisibility("signup-password", "toggle-signup-password");
+      togglePasswordVisibility(
+        "signup-confirm-password",
+        "toggle-signup-confirm-password"
+      );
 
-    if (password !== confirmPassword) {
-        errorMessage.textContent = "Passwords do not match!";
-        errorMessage.classList.remove("hidden");
-    } else {
-        errorMessage.classList.add("hidden");
+      // Switch between Sign In and Sign Up forms
+      document
+        .getElementById("show-signup")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("signin-container").classList.add("hidden");
+          document
+            .getElementById("signup-container")
+            .classList.remove("hidden");
+          document
+            .getElementById("signup-error-message")
+            .classList.add("hidden");
+        });
 
-        // Send data to server via AJAX
-        fetch('open.php', {
-            method: 'POST',
+      document
+        .getElementById("show-signin")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          document.getElementById("signup-container").classList.add("hidden");
+          document
+            .getElementById("signin-container")
+            .classList.remove("hidden");
+          document
+            .getElementById("signin-error-message")
+            .classList.add("hidden");
+        });
+
+      // Handle sign-up form submission
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("signup-name").value;
+          const email = document.getElementById("signup-email").value;
+          const password = document.getElementById("signup-password").value;
+          const confirmPassword = document.getElementById(
+            "signup-confirm-password"
+          ).value;
+          const errorMessage = document.getElementById("signup-error-message");
+
+          if (password !== confirmPassword) {
+            errorMessage.textContent = "Passwords do not match!";
+            errorMessage.classList.remove("hidden");
+          } else {
+            errorMessage.classList.add("hidden");
+
+            // Send data to server via AJAX
+            fetch("open.php", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: `signup=true&name=${encodeURIComponent(
+                name
+              )}&email=${encodeURIComponent(
+                email
+              )}&password=${encodeURIComponent(
+                password
+              )}&confirm_password=${encodeURIComponent(confirmPassword)}`,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.error) {
+                  errorMessage.textContent = data.error;
+                  errorMessage.classList.remove("hidden");
+                } else {
+                  alert(data.success);
+                  window.location.href = "home.html";
+                }
+              });
+          }
+        });
+
+      // Handle sign-in form submission
+      document
+        .getElementById("signin-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const email = document.getElementById("signin-email").value;
+          const password = document.getElementById("signin-password").value;
+          const errorMessage = document.getElementById("signin-error-message");
+
+          // Send data to server via AJAX
+          fetch("open.php", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+              "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `signup=true&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&confirm_password=${encodeURIComponent(confirmPassword)}`
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
+            body: `signin=true&email=${encodeURIComponent(
+              email
+            )}&password=${encodeURIComponent(password)}`,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.error) {
                 errorMessage.textContent = data.error;
                 errorMessage.classList.remove("hidden");
-            } else {
-                // Redirect to home page or show success message
+              } else {
                 alert(data.success);
                 window.location.href = "home.html";
-            }
+              }
+            });
         });
-    }
-});
-
-document.getElementById('signin-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = document.getElementById("signin-email").value;
-    const password = document.getElementById("signin-password").value;
-    const errorMessage = document.getElementById("signin-error-message");
-
-    // Send data to server via AJAX
-    fetch('open.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `signin=true&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            errorMessage.textContent = data.error;
-            errorMessage.classList.remove("hidden");
-        } else {
-            // Redirect to home page or show success message
-            alert(data.success);
-            window.location.href = "home.html";
-        }
-    });
-});
-
     </script>
   </body>
 </html>

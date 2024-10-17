@@ -1,293 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore Open WebUI - the platform for your powerful web solutions." />
-  <meta name="keywords" content="WebUI, Open WebUI, Software, Features, Community" />
-  <title>Open WebUI - Home</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    /* Base styles for all devices */
-    html, body {
-      height: 100%;
-      margin: 0; 
-      scroll-behavior: smooth; /* Smooth scrolling for sections */
-      scroll-snap-type: y mandatory;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore Open WebUI - the platform for your powerful web solutions."
+    />
+    <meta
+      name="keywords"
+      content="WebUI, Open WebUI, Software, Features, Community"
+    />
+    <title>Open WebUI - Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base styles for all devices */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        scroll-behavior: smooth; /* Smooth scrolling for sections */
+        scroll-snap-type: y mandatory;
+      }
 
-    body {
-      background-color: #000000;
-      font-family: "Open Sans", sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding-top: 65px; /* Add padding to avoid overlap with fixed header */
-      overflow-x: hidden; /* Prevent horizontal overflow */
-    }
+      body {
+        background-color: #000000;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding-top: 65px; /* Add padding to avoid overlap with fixed header */
+        overflow-x: hidden; /* Prevent horizontal overflow */
+      }
 
-    /* Header styles */
-    header {
-      background-color: #000000; /* Default background transparent */
-      padding: 15px;
-      position: fixed; /* Make the header fixed */
-      top: 0; /* Position it at the top */
-      left: 0; /* Ensure it starts from the left */
-      right: 0; /* Ensure it stretches to the right */
-      z-index: 1000; /* Ensure it stays above other content */
-    }
+      /* Header styles */
+      header {
+        background-color: #000000; /* Default background transparent */
+        padding: 15px;
+        position: fixed; /* Make the header fixed */
+        top: 0; /* Position it at the top */
+        left: 0; /* Ensure it starts from the left */
+        right: 0; /* Ensure it stretches to the right */
+        z-index: 1000; /* Ensure it stays above other content */
+      }
 
-    /* Dark background for scrolled header */
-    header.scrolled {
-      background-color: #000000; /* Dark background when scrolled */
-    }
+      /* Dark background for scrolled header */
+      header.scrolled {
+        background-color: #000000; /* Dark background when scrolled */
+      }
 
-    /* Centered container inside header */
-    .container {
-      display: flex;
-      justify-content: space-between; /* Ensure space between items */
-      align-items: center;
-      width: auto; /* Set width to auto */
-      padding: 0 15px;
-    }
+      /* Centered container inside header */
+      .container {
+        display: flex;
+        justify-content: space-between; /* Ensure space between items */
+        align-items: center;
+        width: auto; /* Set width to auto */
+        padding: 0 15px;
+      }
 
-    header ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-grow: 1;
-      flex-wrap: wrap;
-    }
-
-    header li {
-      margin: 0 35px;
-    }
-
-    header a {
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 22px;
-    }
-
-    header a:hover {
-      color: #c0bebe;
-    }
-
-    /* Profile section styles */
-    .profile {
-      display: flex;
-      align-items: center;
-      color: #ffffff;
-      margin-left: auto; /* This moves the profile section to the right */
-    }
-
-    .profile img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    /* Logo and Open WebUI section */
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    /* Parallax section styles */
-    .fixed-background {
-      position: relative;
-      width: auto;
-      min-height: 100vh; /* Ensures the section covers the full viewport height */
-      background-attachment: fixed; /* Keeps the background fixed */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      scroll-snap-stop: always;
-      scroll-snap-align: center;
-    }
-
-    .fixed-background .overlay-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: left;
-      line-height: 1.7;
-      padding: 2vw 3vw 2vw 5vw;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 8px;
-    }
-
-    :root {
-      --hue: 223;
-      --bg: hsl(var(--hue),10%,90%);
-      --fg: hsl(var(--hue),10%,10%);
-      --trans-dur: 0.5s;
-      --trans-timing1: cubic-bezier(0.65,0,0.35,1);
-      --trans-timing2: cubic-bezier(0.65,0,0.35,1.5);
-    }
-
-    .overlay-text {
-      position: absolute;
-      top: 46%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-      width: 60%;
-    }
-
-    .overlay-1 {
-      font-size: 4vw;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .overlay-2 {
-      font-size: 2vw;
-    }
-
-    /* Footer styles */
-    footer {
-      background-color: #000000;
-      color: #ffffff;
-      text-align: center;
-      padding: 2px;
-      width: 100%; /* Ensure footer stays full width */
-      position:fixed; /* Change to fixed */
-      bottom: 0; /* Stick to the bottom */
-      left: 0; /* Align to the left */
-    }
-
-    ::selection {
-      background-color: #00e7c12d;
-      color: #00e7c1;
-    }
-    
-    /* Media Queries */
-    @media (max-width: 768px) {
       header ul {
-        flex-direction: row; /* Change to row */
-        justify-content: center; /* Center the items */
-        align-items: center; /* Center vertically */
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        flex-wrap: wrap;
       }
+
       header li {
-        margin: 0 15px; /* Adjust margin for spacing */
+        margin: 0 35px;
       }
 
+      header a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 22px;
+      }
+
+      header a:hover {
+        color: #c0bebe;
+      }
+
+      /* Profile section styles */
       .profile {
-        margin-top: 0; /* Remove margin on top */
-        margin-left: 15px; /* Add margin on left */
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        margin-left: auto; /* This moves the profile section to the right */
+      }
+
+      .profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      /* Logo and Open WebUI section */
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+
+      /* Parallax section styles */
+      .fixed-background {
+        position: relative;
+        width: auto;
+        min-height: 100vh; /* Ensures the section covers the full viewport height */
+        background-attachment: fixed; /* Keeps the background fixed */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        scroll-snap-stop: always;
+        scroll-snap-align: center;
+      }
+
+      .fixed-background .overlay-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        line-height: 1.7;
+        padding: 2vw 3vw 2vw 5vw;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+      }
+
+      :root {
+        --hue: 223;
+        --bg: hsl(var(--hue), 10%, 90%);
+        --fg: hsl(var(--hue), 10%, 10%);
+        --trans-dur: 0.5s;
+        --trans-timing1: cubic-bezier(0.65, 0, 0.35, 1);
+        --trans-timing2: cubic-bezier(0.65, 0, 0.35, 1.5);
+      }
+
+      .overlay-text {
+        position: absolute;
+        top: 46%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        width: 60%;
       }
 
       .overlay-1 {
-        font-size: 6vw;
-      }
-
-      .overlay-2 {
-        font-size: 3vw;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .overlay-1 {
-        font-size: 8vw;
-      }
-
-      .overlay-2 {
         font-size: 4vw;
+        font-weight: bold;
+        margin-bottom: 10px;
       }
-    }
 
-    /* Background Images */
-    .img-1 {
-      background-image: url("pic1.jpg");
-      background-color: rgba(0, 0, 0, 0.6); /* Fallback for background color */
-    }
+      .overlay-2 {
+        font-size: 2vw;
+      }
 
-    .img-2 {
-      background-image: url("pic2.jpg");
-      background-color: rgba(0, 0, 0, 0.6);
-    }
+      /* Footer styles */
+      footer {
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+        padding: 2px;
+        width: 100%; /* Ensure footer stays full width */
+        position: fixed; /* Change to fixed */
+        bottom: 0; /* Stick to the bottom */
+        left: 0; /* Align to the left */
+      }
 
-    .img-3 {
-      background-image: url("pic3.jpg");
-      background-color: rgba(0, 0, 0, 0.6);
-    }
+      ::selection {
+        background-color: #00e7c12d;
+        color: #00e7c1;
+      }
 
-    .img-4 {
-      background-image: url("pic4.jpg");
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-  </style>
-</head>
-<body>
-  <header id="main-header">
-    <div class="container">
-      <div class="logo">
-        <a href="#home">
-          <img src="logo.png" alt="Logo" />
-        </a>
-        <a href="#" style="font-size: 1.8em; color: #ffffff">Open WebUI</a>
+      /* Media Queries */
+      @media (max-width: 768px) {
+        header ul {
+          flex-direction: row; /* Change to row */
+          justify-content: center; /* Center the items */
+          align-items: center; /* Center vertically */
+        }
+        header li {
+          margin: 0 15px; /* Adjust margin for spacing */
+        }
+
+        .profile {
+          margin-top: 0; /* Remove margin on top */
+          margin-left: 15px; /* Add margin on left */
+        }
+
+        .overlay-1 {
+          font-size: 6vw;
+        }
+
+        .overlay-2 {
+          font-size: 3vw;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .overlay-1 {
+          font-size: 8vw;
+        }
+
+        .overlay-2 {
+          font-size: 4vw;
+        }
+      }
+
+      /* Background Images */
+      .img-1 {
+        background-image: url("pic1.jpg");
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.6
+        ); /* Fallback for background color */
+      }
+
+      .img-2 {
+        background-image: url("pic2.jpg");
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .img-3 {
+        background-image: url("pic3.jpg");
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .img-4 {
+        background-image: url("pic4.jpg");
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header">
+      <div class="container">
+        <div class="logo">
+          <a href="#">
+            <img src="logo.png" alt="Logo" />
+          </a>
+          <a href="#" style="font-size: 1.8em; color: #ffffff">Open WebUI</a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#deals">Deals</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+        <div class="profile">
+          <img src="profile.png" alt="Profile Picture" />
+          <span>Affan Ul Haq</span>
+        </div>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#deals">Deals</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </nav>
-      <div class="profile">
-        <img src="profile.png" alt="Profile Picture" />
-        <span>Affan Ul Haq</span>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <section id="home" class="fixed-background img-1">
-      <div class="overlay-text">
-        <div class="overlay-1">Open WebUI</div>
-        <div class="overlay-2">Powerful Solutions for Your Needs</div>
-      </div>
-    </section>
+    <main>
+      <section id="home" class="fixed-background img-1">
+        <div class="overlay-text">
+          <div class="overlay-1">Open WebUI</div>
+          <div class="overlay-2">Powerful Solutions for Your Needs</div>
+        </div>
+      </section>
 
-    <section id="gallery" class="fixed-background img-2">
-      <div class="overlay-text">
-        <div class="overlay-1">Image Gallery</div>
-        <div class="overlay-2">Explore Our Latest Features</div>
-      </div>
-    </section>
+      <section id="gallery" class="fixed-background img-2">
+        <div class="overlay-text">
+          <div class="overlay-1">Image Gallery</div>
+          <div class="overlay-2">Explore Our Latest Features</div>
+        </div>
+      </section>
 
-    <section id="deals" class="fixed-background img-3">
-      <div class="overlay-text">
-        <div class="overlay-1">Exclusive Deals</div>
-        <div class="overlay-2">Check Out Our Best Offers</div>
-      </div>
-    </section>
+      <section id="deals" class="fixed-background img-3">
+        <div class="overlay-text">
+          <div class="overlay-1">Exclusive Deals</div>
+          <div class="overlay-2">Check Out Our Best Offers</div>
+        </div>
+      </section>
 
-    <section id="about" class="fixed-background img-4">
-      <div class="overlay-text">
-        <div class="overlay-1">About Us</div>
-        <div class="overlay-2">Learn More About Our Vision</div>
-      </div>
-    </section>
-  </main>
+      <section id="about" class="fixed-background img-4">
+        <div class="overlay-text">
+          <div class="overlay-1">About Us</div>
+          <div class="overlay-2">Learn More About Our Vision</div>
+        </div>
+      </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2024 Affan's Software Inc. All rights reserved.</p>
-  </footer>
-
-</body>
+    <footer>
+      <p>&copy; 2024 Affan's Software Inc. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
