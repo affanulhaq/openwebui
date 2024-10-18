@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
     }
 
     // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    //$hashed_password = password_hash($password, PASSWORD_DEFAULT);------------------------------------------------------------------
+    $hashed_password = $password;
 
     // Insert into database
     $stmt->close(); // Close the previous statement
@@ -82,8 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
         $stmt->bind_result($hashed_password);
         $stmt->fetch();
 
-        // Verify password
-        if (password_verify($password, $hashed_password)) {
+        // Verify password        
+        //if (password_verify($password, $hashed_password)) {-----------------------------------------------------------------------
+         if ($password === $hashed_password)   { 
             echo json_encode(['success' => 'Sign in successful!']);
         } else {
             echo json_encode(['error' => 'Incorrect email or password!']);
